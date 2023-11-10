@@ -28,6 +28,7 @@ RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install /opencve/
 
 COPY run.sh .
+RUN chmod +x run.sh
 
 # OpenCVE Image
 FROM base
