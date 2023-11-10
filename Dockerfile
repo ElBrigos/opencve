@@ -55,4 +55,4 @@ ENV PATH="/app/venv/bin:$PATH"
 
 ENV OPENCVE_HOME="/app"
 
-ENTRYPOINT ["./run.sh"]
+ENTRYPOINT ["/app/run.sh"]
