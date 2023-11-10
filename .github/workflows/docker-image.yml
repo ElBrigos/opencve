@@ -3,7 +3,7 @@ name: OpenCVE El_Brigos
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build-and-push:
