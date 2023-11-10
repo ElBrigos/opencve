@@ -1,4 +1,4 @@
-name: OpenCVE-El_Brigos
+name: OpenCVE El_Brigos
 
 on:
   push:
@@ -32,7 +32,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/yourimage:latest  # Remplacez 'yourimage' par le nom de votre image
+          tags: ghcr.io/${{ github.repository_owner }}/OpenCVE-TABERNA:latest  # Remplacez 'yourimage' par le nom de votre image
 
       - name: Clean up
-        run: docker rmi ghcr.io/${{ github.repository_owner }}/yourimage:latest  # Remplacez 'yourimage' par le nom de votre image
+        run: docker rmi ghcr.io/${{ github.repository_owner }}/OpenCVE-TABERNA:latest  # Remplacez 'yourimage' par le nom de votre image
