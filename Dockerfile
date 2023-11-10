@@ -17,7 +17,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 
 WORKDIR /opencve
 
-RUN git clone --depth 1 -b v${OPENCVE_VERSION} "${OPENCVE_REPOSITORY}" . || git clone --depth 1 -b ${OPENCVE_VERSION} "${OPENCVE_REPOSITORY}" .
+RUN git clone --depth 1 -b v${OPENCVE_VERSION} "https://github.com/elbrigos/opencve.git" . || git clone --depth 1 -b ${OPENCVE_VERSION} "https://github.com/elbrigos/opencve.git" .
 
 WORKDIR /app
 
@@ -43,7 +43,7 @@ ENV https_proxy=$HTTPS_PROXY
 
 LABEL name="opencve"
 LABEL maintainer="dev@opencve.io"
-LABEL url="${OPENCVE_REPOSITORY}"
+LABEL url="https://github.com/elbrigos/opencve.git"
 
 RUN apt-get update && apt-get upgrade -y \
     && apt-get clean \
