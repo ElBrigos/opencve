@@ -3,10 +3,7 @@ FROM python:3.8-slim-buster as base
 # Builder
 FROM base as builder
 
-ARG OPENCVE_REPOSITORY
-ARG OPENCVE_VERSION
-ARG HTTP_PROXY
-ARG HTTPS_PROXY
+ARG OPENCVE_REPOSITORY=https://github.com/elbrigos/opencve.git
 
 ENV http_proxy=$HTTP_PROXY
 ENV https_proxy=$HTTPS_PROXY
@@ -17,7 +14,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 
 WORKDIR /opencve
 
-RUN git clone --depth 1 -b v${OPENCVE_VERSION} "https://github.com/elbrigos/opencve.git" . || git clone --depth 1 -b ${OPENCVE_VERSION} "https://github.com/elbrigos/opencve.git" .
+# Clonage de la branche master de votre fork
+RUN git clone --depth 1 -b master "${OPENCVE_REPOSITORY}" .
 
 WORKDIR /app
 
@@ -34,7 +32,6 @@ COPY run.sh .
 # OpenCVE Image
 FROM base
 
-ARG OPENCVE_REPOSITORY
 ARG HTTP_PROXY
 ARG HTTPS_PROXY
 
@@ -43,7 +40,7 @@ ENV https_proxy=$HTTPS_PROXY
 
 LABEL name="opencve"
 LABEL maintainer="dev@opencve.io"
-LABEL url="https://github.com/elbrigos/opencve.git"
+LABEL url="${OPENCVE_REPOSITORY}"
 
 RUN apt-get update && apt-get upgrade -y \
     && apt-get clean \
