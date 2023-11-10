@@ -49,6 +49,10 @@ RUN apt-get update && apt-get upgrade -y \
 
 COPY --from=builder /app/ /app/
 
+# Copier run.sh du builder à l'image finale
+COPY --from=builder /opencve/run.sh /app/
+RUN chmod +x /app/run.sh
+
 WORKDIR /app
 
 ENV PATH="/app/venv/bin:$PATH"
